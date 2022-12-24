@@ -1,0 +1,23 @@
+@use '../Shared/colors' as *;
+.link{
+    margin: 15px !important;
+    color: red !important;
+    border-radius: 30px !important;
+}
+.navbar{
+    background-image: url('/Assets/Svgs/nav.svg');
+    background-color: $green;
+    background-size: contain;
+    background-repeat: no-repeat;
+    max-height: 65px;
+}
+.navlink {
+  text-decoration: none;
+  color: $white;
+  font-size: 18px;
+}
+.menuList{
+    flex-grow: 1;
+    flex-direction: row-reverse;
+}
+
