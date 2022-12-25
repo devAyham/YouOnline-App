@@ -20,4 +20,35 @@
     flex-grow: 1;
     flex-direction: row-reverse;
 }
-
+.button{
+    color: $green;
+    background-color: $white;
+    border-radius: 10px;
+    font-size: 13px;
+    &:hover{
+        background-color: $gray;
+    }
+}
+.cartbutton{
+    position: relative;
+    overflow: hidden;
+    color: $white;
+    &::before{
+        position: absolute;
+        content: '|';
+        width: 10px;
+        height: 10px;
+        color: white;
+        opacity: 0.5;
+        left: 0%;
+        top: 15%;
+    }
+}
+.textbutton{
+    position: relative;
+    overflow: hidden;
+    color: $white;
+}
+.langbutton{
+    color: white;
+}

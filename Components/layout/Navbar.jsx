@@ -10,11 +10,26 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import styles from "styles/Components/navbar.module.scss";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { red } from "@mui/material/colors";
+import { ButtonGroup, Popover } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import country from "/public/Assets/Images/3.png";
+import Image from "next/image";
+import DrobDownMenu from "./DropDownMenu";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [lang, setlang] = React.useState("En");
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const [location, setlocation] = React.useState('Location');
+
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -22,7 +37,7 @@ const Navbar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const [alignment, setAlignment] = React.useState('web');
+  const [alignment, setAlignment] = React.useState("web");
 
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
@@ -48,8 +63,57 @@ const Navbar = () => {
               display: { xs: "none", md: "flex" },
             }}
           >
-              <Button color={'secondary'} variant="contained">Add Post</Button>
+            <Button className={styles.button} variant="contained">
+              Add Post
+            </Button>
+            <Button className={styles.cartbutton} variant="text">
+              Cart
+            </Button>
+            <Button className={styles.textbutton} variant="text">
+              Sign In
+            </Button>
+            <DrobDownMenu location={location} setlocation={setlocation} />
+            <Button
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              color={"inherit"}
+              startIcon={
+                location !='Location' && (
+                  <Image src={country} alt={"dd"} placeholder={"blur"} />
+                )
+              }
+            >
+              {location}
+            </Button>
 
+            <ButtonGroup
+              disableElevation
+              variant="text"
+              aria-label="Disabled elevation buttons"
+              color={"success"}
+            >
+              <Button
+                disabled={lang === "Ar"}
+                className={styles.langbutton}
+                onClick={() => {
+                  setlang("Ar");
+                }}
+              >
+                العربية
+              </Button>
+              <Button
+                disabled={lang === "En"}
+                className={styles.langbutton}
+                onClick={() => {
+                  setlang("En");
+                }}
+              >
+                EN
+              </Button>
+            </ButtonGroup>
           </Box>
           {/* Small Screens */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
